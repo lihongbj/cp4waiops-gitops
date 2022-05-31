@@ -1,4 +1,4 @@
-{{- if eq .Values.cp4waiops.profile "x-small"  }}
+{{- if eq .Values.cp4waiops.profile "x-small-idle"  }}
 apiVersion: redhatcop.redhat.io/v1alpha1
 kind: ResourceLocker
 metadata:
@@ -9,43 +9,43 @@ spec:
   - id: nginx-locker
     patchTemplate: |
       spec:
-        replicas: {{.Values.res.nginx.replicas}}
+        replicas: 1
     patchType: application/strategic-merge-patch+json
     targetObjectRef:
       apiVersion: apps/v1
       kind: Deployment
       name: ibm-nginx
-      namespace: {{.Values.aiManager.namespace}}
+      namespace: cp4waiops
   - id: usermgmt-locker
     patchTemplate: |
       spec:
-        replicas: {{.Values.res.usermgmt.replicas}}
+        replicas: 1
     patchType: application/strategic-merge-patch+json
     targetObjectRef:
       apiVersion: apps/v1
       kind: Deployment
       name: usermgmt
-      namespace: {{.Values.aiManager.namespace}}
+      namespace: cp4waiops
   - id: zen-core-locker
     patchTemplate: |
       spec:
-        replicas: {{.Values.res.zencore.replicas}}
+        replicas: 1
     patchType: application/strategic-merge-patch+json
     targetObjectRef:
       apiVersion: apps/v1
       kind: Deployment
       name: zen-core
-      namespace: {{.Values.aiManager.namespace}}
+      namespace: cp4waiops
   - id: zen-core-api-locker
     patchTemplate: |
       spec:
-        replicas: {{.Values.res.zencoreapi.replicas}}
+        replicas: 1
     patchType: application/strategic-merge-patch+json
     targetObjectRef:
       apiVersion: apps/v1
       kind: Deployment
       name: zen-core-api
-      namespace: {{.Values.aiManager.namespace}}
+      namespace: cp4waiops
   - id: automationbase-locker
     patchTemplate: |
       spec:
@@ -54,33 +54,33 @@ spec:
             tlsSidecar:
               resources:
                 limits:
-                  cpu: "{{.Values.res.kafka.entityOperator.tlsSidecar.limits.cpu}}"
-                  memory: "{{.Values.res.kafka.entityOperator.tlsSidecar.limits.memory}}"
+                  cpu: "500m"
+                  memory: "128Mi"
                 requests:
-                  cpu: "{{.Values.res.kafka.entityOperator.tlsSidecar.requests.cpu}}"
-                  memory: "{{.Values.res.kafka.entityOperator.tlsSidecar.requests.memory}}"
+                  cpu: "100m"
+                  memory: "64Mi"
             topicOperator:
               resources:
                 limits:
-                  cpu: "{{.Values.res.kafka.entityOperator.topicOperator.limits.cpu}}"
-                  memory: "{{.Values.res.kafka.entityOperator.topicOperator.limits.memory}}"
+                  cpu: "500m"
+                  memory: "256Mi"
                 requests:
-                  cpu: "{{.Values.res.kafka.entityOperator.topicOperator.requests.cpu}}"
-                  memory: "{{.Values.res.kafka.entityOperator.topicOperator.requests.memory}}"
+                  cpu: "100m"
+                  memory: "256Mi"
             userOperator:
               resources:
                 limits:
-                  cpu: "{{.Values.res.kafka.entityOperator.userOperator.limits.cpu}}"
-                  memory: "{{.Values.res.kafka.entityOperator.userOperator.limits.memory}}"
+                  cpu: "500m"
+                  memory: "256Mi"
                 requests:
-                  cpu: "{{.Values.res.kafka.entityOperator.userOperator.requests.cpu}}"
-                  memory: "{{.Values.res.kafka.entityOperator.userOperator.requests.memory}}"
+                  cpu: "100m"
+                  memory: "256Mi"
     patchType: application/merge-patch+json
     targetObjectRef:
       apiVersion: base.automation.ibm.com/v1beta1
       kind: AutomationBase
       name: automationbase-sample
-      namespace: {{.Values.aiManager.namespace}}
+      namespace: cp4waiops
   serviceAccountRef:
     name: resource-locker-operator-controller-manager
 {{- end }}

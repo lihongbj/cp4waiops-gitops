@@ -33,9 +33,6 @@ spec:
           {{- if eq .Values.cp4waiops.profile "x-small" }}
             - values.x-small.yaml
           {{- end }}
-          {{- if eq .Values.cp4waiops.profile "x-small-idle" }}
-            - values.x-small-idle.yaml
-          {{- end }}
           parameters:
             - name: 'aiManager.instanceName'
               value: '{{ .Values.cp4waiops.aiManager.instanceName }}'
