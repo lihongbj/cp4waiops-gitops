@@ -1,4 +1,4 @@
-{{- if eq .Values.cp4waiops.profile "x-small"  }}
+{{- if eq .Values.cp4waiops.profile "x-small-idle"  }}
 apiVersion: redhatcop.redhat.io/v1alpha1
 kind: ResourceLocker
 metadata:
@@ -9,7 +9,7 @@ spec:
   - id: aiopsedge-operator-controller-manager-locker
     patchTemplate: |
       spec:
-        replicas: {{.Values.res.aiopsedgeOperator.replicas}}
+        replicas: 1
     patchType: application/strategic-merge-patch+json
     targetObjectRef:
       apiVersion: apps/v1
