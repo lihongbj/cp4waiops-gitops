@@ -1,4 +1,4 @@
-{{- if eq .Values.cp4waiops.profile "x-small-idle"  }}
+{{- if eq .Values.profile "x-small-idle"  }}
 apiVersion: v1
 kind: ConfigMap
 metadata:
