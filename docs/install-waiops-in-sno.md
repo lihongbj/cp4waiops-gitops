@@ -46,7 +46,7 @@ To prepare and install a deployment of IBM Cloud Pak® for Watson AIOps AI Manag
 ### Preparation
 
 #### Prerequisite
-For Prerequisite, please refer to [Prerequisite](https://github.com/IBM/cp4waiops-gitops/blob/docs/docs/how-to-deploy-cp4waiops.md#prerequisite)
+For Prerequisite, please refer to [Prerequisite](https://github.com/IBM/cp4waiops-gitops/blob/docs/docs/how-to-deploy-cp4waiops-36.md#prerequisites)
 
 #### Set pods capacity in single node
 
@@ -65,8 +65,8 @@ metadata:
   name: set-max-pods
 spec:
   kubeletConfig:
-    maxPods: 320
-    podsPerCore: 10
+    maxPods: 360
+    podsPerCore: 15
   machineConfigPoolSelector:
     matchLabels:
       node-role.kubernetes.io/master: ""
@@ -82,7 +82,7 @@ oc apply -f set-max-pods.yaml
 
 ```console
 $ oc get node <sno-node-name> -o yaml | yq .status.capacity.pods
-320
+360
 
 ```
 
@@ -94,15 +94,15 @@ To Login to Argo CD,  please refer to [Login to Argo CD](https://github.com/IBM/
 
 #### Grant Argo CD Cluster Admin Permission
 
-To Grant Argo CD Cluster Admin Permission,  please refer to [Grant Argo CD Cluster Admin Permission](https://github.com/IBM/cp4waiops-gitops/blob/docs/docs/how-to-deploy-cp4waiops.md#grant-argo-cd-cluster-admin-permission)
+To Grant Argo CD Cluster Admin Permission,  please refer to [Grant Argo CD Cluster Admin Permission](https://github.com/IBM/cp4waiops-gitops/blob/docs/docs/how-to-deploy-cp4waiops-36.md#grant-argo-cd-cluster-admin-permission)
 
 
 
 #### Obtain an entitlement key
-To Obtain an entitlement key, please refer to [Obtain an entitlement key](https://github.com/IBM/cp4waiops-gitops/blob/docs/docs/how-to-deploy-cp4waiops.md#obtain-an-entitlement-key)
+To Obtain an entitlement key, please refer to [Obtain an entitlement key](https://github.com/IBM/cp4waiops-gitops/blob/docs/docs/how-to-deploy-cp4waiops-36.md#obtain-an-entitlement-key)
 
 #### Update the OCP global pull secret
-To Update the OCP global pull secret, please refer to [Update the OCP global pull secret](https://github.com/IBM/cp4waiops-gitops/blob/docs/docs/how-to-deploy-cp4waiops.md#update-the-ocp-global-pull-secret)
+To Update the OCP global pull secret, please refer to [Update the OCP global pull secret](https://github.com/IBM/cp4waiops-gitops/blob/docs/docs/how-to-deploy-cp4waiops-36.md#update-the-openshift-container-platform-global-pull-secret)
 
 
 #### Storage Considerations
