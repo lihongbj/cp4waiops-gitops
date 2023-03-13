@@ -147,7 +147,7 @@ Just fill in the form using the suggested field values listed in following table
 And adding following YAML snippet to `HELM` > `VALUES` field :
 ```yaml
 cp4waiops:
-  isSNO:true
+  isSNO: true
 ```
 
 ##### Set if other storageclass
@@ -155,7 +155,7 @@ If other storageclass has been installed in advance, for example `nfs-client` ha
 
 ```yaml
 cp4waiops:
-  isSNO:true
+  isSNO: true
   storageClass: nfs-client
   storageClassLargeBlock: nfs-client
 ```
